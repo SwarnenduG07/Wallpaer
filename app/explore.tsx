@@ -1,9 +1,9 @@
 import { Text, View, ViewComponent } from "react-native";
 
-export  default function forYou() {
+export  default function explore() {
     return <View>
         <Text>
-            For you Page
+            Explor page Page
         </Text>
     </View>
 }
