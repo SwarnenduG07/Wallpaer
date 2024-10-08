@@ -22,16 +22,16 @@ export const DownloadPicture = ({onClose}: {
         snapPoints={["99%"]}
         onChange={handleSheetChanges}
         enablePanDownToClose={true}
+        handleIndicatorStyle={{height: 0}}
       >
         <BottomSheetView style={styles.contentContainer}>
-          <Text>Asowmdf</Text>
+          <Text>Buttom sheet</Text>
         </BottomSheetView>
       </BottomSheet>
     </View>
   );
 };
 
-// Styles for the component
 const styles = StyleSheet.create({
   container: {
     flex: 1,
