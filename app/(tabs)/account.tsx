@@ -21,4 +21,4 @@ export  default function account() {
         {pictureOpen && <DownloadPicture onClose={() => setPictureOpen(false)}/> }
         </View>
     </SafeAreaView>
-}
+} 
