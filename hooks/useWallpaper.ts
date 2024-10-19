@@ -9,6 +9,16 @@ export function useWallpaper(): Wallpaper[] {
         "name": "Heritage"
      }, {
         url: "https://ideogram.ai/assets/progressive-image/balanced/response/oOvAzbetS4GlLq6CMnLaqw",
-         "name": "Late Night"
-     }]
+         "name": "Tiger Night"
+     }, {
+        url: "https://ideogram.ai/assets/progressive-image/balanced/response/oOvAzbetS4GlLq6CMnLaqw",
+         "name": "Lion at"
+     }, {
+        url: "https://ideogram.ai/assets/progressive-image/balanced/response/oOvAzbetS4GlLq6CMnLaqw",   
+         "name": "Late eneving"
+     }, {
+        url: "https://ideogram.ai/assets/progressive-image/balanced/response/oOvAzbetS4GlLq6CMnLaqw",
+         "name": "Late morning"
+     },
+    ]
 }

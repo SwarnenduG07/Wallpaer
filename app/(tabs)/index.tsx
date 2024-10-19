@@ -12,28 +12,28 @@ export default function explore() {
           <ParallaxScrollView
           headerBackgroundColor={{dark: "black", light: "white"}}
           headerImage={<Image style={{flex: 1}} source={{uri: wallpaper[0]?.url ?? ""}}/>}>
-            <ThemedView style={styles.container}>
-                <ThemedView style={styles.innerContainer}>
+            {/* <View style={styles.container}>
+                <View style={styles.innerContainer}>
                     <FlatList 
-                    data={wallpaper}
+                    data={wallpaper.filter((_,index) => index % 2 === 0)}
                     renderItem={({item}) =>  <View style={styles.imageContainer}> <ImageCard wallpaper={item} /> </View>}
                     keyExtractor={item => item.name}
                 />
-                </ThemedView>
+                </View>
                 <ThemedView style={styles.innerContainer}> 
                     <FlatList 
-                        data={wallpaper}
+                        data={wallpaper.filter((_,index) => index % 2 === 0)}
                         renderItem={({item}) =>  <View style={styles.imageContainer}> <ImageCard wallpaper={item} /> </View>}
                         keyExtractor={item => item.name}
                     />
                 </ThemedView>
-           </ThemedView>
+           </View> */}
               
           </ParallaxScrollView>
     </SafeAreaView>
 }
 
-const  styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         flex: 1,
