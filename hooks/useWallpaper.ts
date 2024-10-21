@@ -11,10 +11,10 @@ export function useWallpaper(): Wallpaper[] {
         url: "https://ideogram.ai/assets/progressive-image/balanced/response/oOvAzbetS4GlLq6CMnLaqw",
          "name": "Tiger Night"
      }, {
-        url: "https://ideogram.ai/assets/progressive-image/balanced/response/oOvAzbetS4GlLq6CMnLaqw",
+        url: "https://ideogram.ai/assets/progressive-image/balanced/response/-vRzF6LTQ72AtQzH7PnDnA",
          "name": "Lion at"
      }, {
-        url: "https://ideogram.ai/assets/progressive-image/balanced/response/oOvAzbetS4GlLq6CMnLaqw",   
+        url: "https://ideogram.ai/assets/progressive-image/balanced/response/9DkOEXtJRfmFoIcor8aMYA",   
          "name": "Late eneving"
      }, {
         url: "https://ideogram.ai/assets/progressive-image/balanced/response/oOvAzbetS4GlLq6CMnLaqw",
