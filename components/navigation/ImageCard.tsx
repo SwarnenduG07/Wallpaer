@@ -30,7 +30,7 @@ export function ImageCard({wallpaper} :{
 const style =  StyleSheet.create({
  image: {
     flex: 1,
-    height: 200,
+    height: 220,
     borderRadius: 20,
   },
    lable: {
