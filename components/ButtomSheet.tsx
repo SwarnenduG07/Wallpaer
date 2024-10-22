@@ -1,9 +1,10 @@
 import React, { useCallback, useRef } from "react";
-import { View, Text, StyleSheet , Image, Button, useColorScheme} from "react-native";
+import { View, Text, StyleSheet , Image, Button, useColorScheme, Pressable} from "react-native";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { Wallpaper } from "@/hooks/useWallpaper";
 import { Colors } from "@/constants/Colors";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { ThemedText } from "./ThemedText";
 
 export const DownloadPicture = ({onClose, wallpaper}: {
     onClose: () => void;
@@ -16,7 +17,7 @@ export const DownloadPicture = ({onClose, wallpaper}: {
     console.log("handleSheetChanges", index);
   }, []);
 
-  // Define snap points for BottomSheet
+  //BottomSheet Define snap points for 
   const theme = useColorScheme() ?? 'light'
   return (
       <BottomSheet
@@ -50,11 +51,40 @@ export const DownloadPicture = ({onClose, wallpaper}: {
               />
              </View>
           </View>
-          <Button title="Download"></Button>
+          <View style={styles.textcontainer}>
+           <ThemedText style={styles.text}>{wallpaper.name}</ThemedText>
+          </View>
+          <Download />
         </BottomSheetView>
       </BottomSheet>
   );
 };
+
+function Download() {
+  const theme = useColorScheme() ?? 'light'
+
+    return <Pressable style={{
+         backgroundColor: "black" ,
+         padding: 10,
+         margin: 40,
+         justifyContent: "center",
+         flexDirection: "row",
+         borderRadius: 20,
+          
+    }}> 
+    <Ionicons
+    name={'download'}
+    size={22}
+    color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
+    style={{paddingRight: 2}}
+    />
+     <Text style={{
+      fontSize: 20,
+      color: "white",   
+      fontWeight: "600"   
+     }}>Download</Text>
+    </Pressable>
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -79,5 +109,16 @@ const styles = StyleSheet.create({
   inntertopbar: {
       display: "flex",
       flexDirection:"row"
+  },
+  textcontainer: {
+     justifyContent: "center",
+     display: "flex",
+     width: "100%"
+  },
+  text: {
+    paddingTop: 20,
+    fontWeight:"600",
+    fontSize: 30,
+    textAlign:"center",
   }
 });
