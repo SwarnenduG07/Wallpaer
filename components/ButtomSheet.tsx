@@ -1,9 +1,13 @@
 import React, { useCallback, useRef } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet , Image, Button, useColorScheme} from "react-native";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import { Wallpaper } from "@/hooks/useWallpaper";
+import { Colors } from "@/constants/Colors";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-export const DownloadPicture = ({onClose}: {
+export const DownloadPicture = ({onClose, wallpaper}: {
     onClose: () => void;
+    wallpaper: Wallpaper;
 }) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -13,31 +17,67 @@ export const DownloadPicture = ({onClose}: {
   }, []);
 
   // Define snap points for BottomSheet
-
+  const theme = useColorScheme() ?? 'light'
   return (
-    <View style={styles.container}>
       <BottomSheet
       onClose={onClose}
         ref={bottomSheetRef}
-        snapPoints={["99%"]}
+        snapPoints={["95%"]}
         onChange={handleSheetChanges}
         enablePanDownToClose={true}
         handleIndicatorStyle={{height: 0}}
+        handleStyle={{display: "none"}}
       >
         <BottomSheetView style={styles.contentContainer}>
-          <Text>Buttom sheet</Text>
+          <Image style={styles.image} source={{uri: wallpaper.url}} />
+          <View style={styles.topbar}>
+            <Ionicons
+             name={'close'}
+             size={24}
+             color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
+             />
+            <View style = {styles.inntertopbar}>
+              <Ionicons
+              name={'share'}
+              size={24}
+              color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
+              style={{paddingRight: 10}}
+              />
+              <Ionicons
+              name={'heart'}
+              size={24}
+              color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
+              />
+             </View>
+          </View>
+          <Button title="Download"></Button>
         </BottomSheetView>
       </BottomSheet>
-    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    
   },
   contentContainer: {
        flex: 1,
-       alignItems: "center",
   },
+  image: {
+    height: "80%",
+    borderRadius: 15,
+  },
+  topbar: {
+    position: "absolute",
+    padding: 10,
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    width: "100%",
+  },
+  inntertopbar: {
+      display: "flex",
+      flexDirection:"row"
+  }
 });

@@ -5,9 +5,12 @@ import { Image, StyleSheet, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedView } from "@/components/ThemedView";
+import { useState } from "react";
+import { DownloadPicture } from "@/components/ButtomSheet";
 
 export default function explore() {
     const wallpaper = useWallpaper();
+    const [selectedWallpaper, setSelectedWallpaper] = useState<null | Wallpaper>(null)
     return <SafeAreaView style={{flex: 1}}>
           <ParallaxScrollView
           headerBackgroundColor={{dark: "black", light: "white"}}
@@ -18,7 +21,9 @@ export default function explore() {
                         data={wallpaper.filter((_,index) => index % 2 === 0)}
                         renderItem={({item}) => (
                             <View style={styles.imageContainer}>
-                                <ImageCard wallpaper={item} />
+                                <ImageCard wallpaper={item} onPress={() => {
+                                  setSelectedWallpaper(item)
+                                }}/>
                             </View>
                         )}
                         keyExtractor={item => item.name}
@@ -29,7 +34,9 @@ export default function explore() {
                         data={wallpaper.filter((_,index) => index % 2 === 1)}
                         renderItem={({item}) => (
                             <View style={styles.imageContainer}>
-                                <ImageCard wallpaper={item} />
+                                <ImageCard wallpaper={item} onPress={() => {
+                                    setSelectedWallpaper(item)
+                                }}/>
                             </View>
                         )}
                         keyExtractor={item => item.name}
@@ -38,6 +45,7 @@ export default function explore() {
             </View>
               
           </ParallaxScrollView>
+          {selectedWallpaper && <DownloadPicture onClose={() => setSelectedWallpaper(null)} wallpaper={selectedWallpaper}/>}
     </SafeAreaView>
 }
 

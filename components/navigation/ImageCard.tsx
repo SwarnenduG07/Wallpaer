@@ -1,28 +1,31 @@
 import { Wallpaper } from "@/hooks/useWallpaper";
-import {  View, StyleSheet , Image, useColorScheme} from "react-native";
+import {  View, StyleSheet , Image, useColorScheme, Pressable} from "react-native";
 import { ThemedText } from "../ThemedText";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Colors } from "@/constants/Colors";
 
 
-export function ImageCard({wallpaper} :{
+export function ImageCard({wallpaper, onPress} :{
     wallpaper:Wallpaper,
+    onPress: ()=>void
 }) {
     const theme = useColorScheme() ?? 'light'
-    return <View>        
-          <Image source={{uri: wallpaper.url}} style={style.image}/>
-          <View style= {style.lableContainer}>
-            <ThemedText style= {style.lable}>{wallpaper.name}</ThemedText>
-            <View style={style.iconContainer}>
-                <Ionicons
-                name={'heart'}
-                size={18}
-                color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
-                />
+      return <Pressable  onPress = {onPress}>
+        <View>        
+            <Image source={{uri: wallpaper.url}} style={style.image}/>
+            <View style= {style.lableContainer}>
+              <ThemedText style= {style.lable}>{wallpaper.name}</ThemedText>
+              <View style={style.iconContainer}>
+                  <Ionicons
+                  name={'heart'}
+                  size={18}
+                  color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
+                  />
+              </View>
             </View>
-          </View>
 
-        </View>
+          </View>
+    </Pressable>  
     
 }
 
