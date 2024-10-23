@@ -1,13 +1,15 @@
 import { DownloadPicture } from "@/components/ButtomSheet";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { Colors } from "@/constants/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Link } from "expo-router";
 import { useState } from "react";
-import {  StyleSheet, Pressable, Text, View, Appearance } from "react-native";
+import {  StyleSheet, Pressable, Text, View, Appearance, useColorScheme } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export  default function account() {
+    const theme = useColorScheme();
     const [pictureOpen, setPictureOpen] = useState(false)
     return <SafeAreaView style={{flex: 1}}>
         <Header />
@@ -15,12 +17,18 @@ export  default function account() {
           <AuthButton
           lable="Signin"
           icon={<Ionicons name="logo-google" 
-          size={22} color="white" />} 
+          size={22} 
+          color={theme === 'light' ? Colors.light.text: Colors.light.icon} 
+          />
+        } 
           />
           <AuthButton
           lable="Signin"
           icon={<Ionicons name="logo-google" 
-          size={22} color="white" />} 
+          size={22} 
+          color={theme === 'light' ? Colors.light.text: Colors.light.icon} 
+          />
+        } 
           />
          <ThemeSelector />
         </ThemedView>
@@ -40,6 +48,7 @@ function ThemeSelector() {
 }
 
 function ThemeButton({selected, title, colorScheme}: {selected: boolean, title: string, colorScheme: "dark" | "light" | null}) { 
+    const theme = useColorScheme()
  return <Pressable style={styles.themButtonContainer} onPress={() => {
     Appearance.setColorScheme(colorScheme)
  }}>
@@ -96,7 +105,7 @@ function AuthButton({lable, icon}: {lable: string, icon: any}) {
     },
      themButtonContainer: {
         padding: 10,
-        borderColor: "black",
+        borderColor: Colors.light.text,
         borderWidth: 1,
         borderRadius: 5,
         minWidth: 80,

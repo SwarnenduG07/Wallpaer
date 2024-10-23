@@ -5,6 +5,7 @@ import { Wallpaper } from "@/hooks/useWallpaper";
 import { Colors } from "@/constants/Colors";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ThemedText } from "./ThemedText";
+import { ThemedView } from "./ThemedView";
 
 export const DownloadPicture = ({onClose, wallpaper}: {
     onClose: () => void;
@@ -30,31 +31,33 @@ export const DownloadPicture = ({onClose, wallpaper}: {
         handleStyle={{display: "none"}}
       >
         <BottomSheetView style={styles.contentContainer}>
-          <Image style={styles.image} source={{uri: wallpaper.url}} />
-          <View style={styles.topbar}>
-            <Ionicons
-             name={'close'}
-             size={24}
-             color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
-             />
-            <View style = {styles.inntertopbar}>
+        <ThemedView style={{flex: 1}}>
+            <Image style={styles.image} source={{uri: wallpaper.url}} />
+            <View style={styles.topbar}>
               <Ionicons
-              name={'share'}
-              size={24}
-              color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
-              style={{paddingRight: 10}}
-              />
-              <Ionicons
-              name={'heart'}
+              name={'close'}
               size={24}
               color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
               />
-             </View>
-          </View>
-          <View style={styles.textcontainer}>
-           <ThemedText style={styles.text}>{wallpaper.name}</ThemedText>
-          </View>
-          <Download />
+              <View style = {styles.inntertopbar}>
+                <Ionicons
+                name={'share'}
+                size={24}
+                color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
+                style={{paddingRight: 10}}
+                />
+                <Ionicons
+                name={'heart'}
+                size={24}
+                color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
+                />
+              </View>
+            </View>
+            <ThemedView style={styles.textcontainer}>
+            <ThemedText style={styles.text}>{wallpaper.name}</ThemedText>
+            </ThemedView>
+            <Download />
+            </ThemedView>
         </BottomSheetView>
       </BottomSheet>
   );
@@ -70,6 +73,8 @@ function Download() {
          justifyContent: "center",
          flexDirection: "row",
          borderRadius: 20,
+         borderWidth: 1,
+         borderColor: theme === 'light' ? Colors.light.text: Colors.dark.icon
           
     }}> 
     <Ionicons
