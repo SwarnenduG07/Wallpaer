@@ -7,45 +7,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedView } from "@/components/ThemedView";
 import { useState } from "react";
 import { DownloadPicture } from "@/components/ButtomSheet";
+import { SplitView } from "@/components/Splitvew";
 
 export default function explore() {
     const wallpaper = useWallpaper();
-    const [selectedWallpaper, setSelectedWallpaper] = useState<null | Wallpaper>(null)
+    
     return <SafeAreaView style={{flex: 1}}>
           <ParallaxScrollView
           headerBackgroundColor={{dark: "black", light: "white"}}
           headerImage={<Image style={{flex: 1}} source={{uri: wallpaper[0]?.url ?? ""}}/>}>
-            <View style={styles.container}>
-                <View style={styles.innerContainer}>
-                    <FlatList 
-                        data={wallpaper.filter((_,index) => index % 2 === 0)}
-                        renderItem={({item}) => (
-                            <View style={styles.imageContainer}>
-                                <ImageCard wallpaper={item} onPress={() => {
-                                  setSelectedWallpaper(item)
-                                }}/>
-                            </View>
-                        )}
-                        keyExtractor={item => item.name}
-                    />
-                </View>
-                <ThemedView style={styles.innerContainer}> 
-                    <FlatList 
-                        data={wallpaper.filter((_,index) => index % 2 === 1)}
-                        renderItem={({item}) => (
-                            <View style={styles.imageContainer}>
-                                <ImageCard wallpaper={item} onPress={() => {
-                                    setSelectedWallpaper(item)
-                                }}/>
-                            </View>
-                        )}
-                        keyExtractor={item => item.name}
-                    />
-                </ThemedView>
-            </View>
-              
+            <SplitView wallpapers={wallpaper} />
           </ParallaxScrollView>
-          {selectedWallpaper && <DownloadPicture onClose={() => setSelectedWallpaper(null)} wallpaper={selectedWallpaper}/>}
     </SafeAreaView>
 }
 
