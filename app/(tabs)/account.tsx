@@ -1,16 +1,17 @@
 import { DownloadPicture } from "@/components/ButtomSheet";
 import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Link } from "expo-router";
 import { useState } from "react";
-import {  StyleSheet, Pressable, Text, useColorScheme, View, ViewComponent } from "react-native";
+import {  StyleSheet, Pressable, Text, View, Appearance } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export  default function account() {
     const [pictureOpen, setPictureOpen] = useState(false)
     return <SafeAreaView style={{flex: 1}}>
         <Header />
-        <View style={{flex:1}}>
+        <ThemedView style={{flex:1}}>
           <AuthButton
           lable="Signin"
           icon={<Ionicons name="logo-google" 
@@ -21,34 +22,36 @@ export  default function account() {
           icon={<Ionicons name="logo-google" 
           size={22} color="white" />} 
           />
-        <ThemeSelector />
-        </View>
+         <ThemeSelector />
+        </ThemedView>
     </SafeAreaView>
 } 
 
 function ThemeSelector() {
-        return <View style={styles.margin}>
-                <Text style={styles.textBig}>Settings</Text>
-                <Text style={styles.textSmall}>Theme</Text>
-                <View style={styles.textSmall}>
-                   <ThemeButton selected={false} title="Dark" />
-                   <ThemeButton selected={false} title="Dark" />
-                   <ThemeButton selected={false} title="system" />
-                </View>
-            </View>
+        return <ThemedView style={styles.margin}>
+                <ThemedText style={styles.textBig}>Settings</ThemedText>
+                <ThemedText style={styles.textSmall}>Theme</ThemedText>
+                <ThemedView style={{flexDirection: "row", justifyContent: "space-between", width: '100%', paddingHorizontal: 20, marginTop: 10}}>
+                   <ThemeButton selected={false} title={"Dark"} colorScheme="dark" />
+                   <ThemeButton selected={false} title={"Light"} colorScheme="light" />
+                   <ThemeButton selected={false} title={"System"} colorScheme={null} />
+                </ThemedView>
+            </ThemedView>
 }
 
-function ThemeButton({selected, title}: {selected: boolean, title: string}) { 
- return <Pressable>
+function ThemeButton({selected, title, colorScheme}: {selected: boolean, title: string, colorScheme: "dark" | "light" | null}) { 
+ return <Pressable style={styles.themButtonContainer} onPress={() => {
+    Appearance.setColorScheme(colorScheme)
+ }}>
        <ThemedText>{title}</ThemedText>
  </Pressable>
 }
 
 function Header() {
-    return <View style={styles.topbar}>
-        <Text style={styles.textBig}>Panels</Text>
-        <Text style={styles.textSmall}>Signin to save your data</Text>
-    </View>
+    return <ThemedView style={styles.topbar}>
+        <ThemedText style={styles.textBig}>Panels</ThemedText>
+        <ThemedText style={styles.textSmall}>Signin to save your data</ThemedText>
+    </ThemedView>
 }
 
 function AuthButton({lable, icon}: {lable: string, icon: any}) {
@@ -63,11 +66,11 @@ function AuthButton({lable, icon}: {lable: string, icon: any}) {
             
       }}> 
        { icon }
-       <Text style={{
+       <ThemedText style={{
         fontSize: 20,
         color: "white",   
         fontWeight: "600"   
-       }}>{lable}</Text>
+       }}>{lable}</ThemedText>
       </Pressable>
   }
 
@@ -76,6 +79,7 @@ function AuthButton({lable, icon}: {lable: string, icon: any}) {
         fontSize: 30,
         fontWeight: "semibold",
         marginLeft: 20,
+        paddingTop: 10,
     },
     textSmall: {
         fontSize: 16,
@@ -90,8 +94,20 @@ function AuthButton({lable, icon}: {lable: string, icon: any}) {
     themselectorChild: {
         flex: 0.33
     },
+     themButtonContainer: {
+        padding: 10,
+        borderColor: "black",
+        borderWidth: 1,
+        borderRadius: 5,
+        minWidth: 80,
+        alignItems: 'center',
+     },
     margin: {
         marginTop: 20,
+    },
+    color: {
+        marginLeft: 20,
+
     }
   })
   
