@@ -53,6 +53,36 @@ export function useWallpaper(): FullWallpaper[] {
          liked: true,
          suggested: false,
          library: true,
+     }, {
+        url: "https://ideogram.ai/assets/progressive-image/balanced/response/KgyhBI_uS0OKZwsjHOqrOQ",
+         "name": "Wall Paper",
+         liked: true,
+         suggested: true,
+         library: true,
+     }, {
+        url: "https://ideogram.ai/assets/image/lossless/response/O0N7V3UbRlyrhty2uon8Lw",
+         "name": "Late ",
+         liked: true,
+         suggested: false,
+         library: true,
+     }, {
+        url: "https://ideogram.ai/assets/progressive-image/balanced/response/AL4Cfq0qQ_m5Gndj5OAEeA",
+         "name": "House ",
+         liked: true,
+         suggested: false,
+         library: true,
+     }, {
+        url: "https://ideogram.ai/assets/progressive-image/balanced/response/U1x1b_eWSEaLn8Gp8iQoQw",
+         "name": "Quality",
+         liked: true,
+         suggested: false,
+         library: true,
+     }, {
+        url: "https://ideogram.ai/assets/progressive-image/balanced/response/e7NOKqFWTz2w4t7n4V4Nkg",
+         "name": "SpaceSheet",
+         liked: true,
+         suggested: false,
+         library: true,
      },
     ]
 }
